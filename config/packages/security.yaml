@@ -1,0 +1,60 @@
+security:
+    encoders:
+       App\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+       Symfony\Component\Security\Core\User\User:
+           algorithm: bcrypt
+           cost: 12
+    providers:
+        in_memory:
+            memory:
+                users:
+                    nesrine:
+                        password: $2y$12$H7r8FW3LythRqwCCp1U8euQexTkCCNL8ZSBi7BJkRZPDIQ4lGZCJm
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: $2y$12$LrfE1hA/R/SE9Anb03Wlz.VwwEcGsfsXEgJEruzJkoOEaET4uAGD6
+                        roles: 'ROLE_ADMIN'
+        user_db:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:    ^/
+            provider: user_db
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                target_path_parameter: go_to
+                failure_path_parameter: back_to
+            http_basic: ~
+            logout:
+                path:   /logout
+                target: /
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#         - { path: ^/admin, roles: ROLE_ADMIN }
+#         - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/, roles: ROLE_USER }

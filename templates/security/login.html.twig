@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="container">
+        <form action="{{ path('login') }}" method="post">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="_username" class="required">Username</label>
+                        <input class="form-control" type="email" placeholder="Email address" id="username" name="_username" value="{{ last_username }}" required autofocus/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="_password" class="required">Password</label>
+                         <input class="form-control" type="password" id="password" name="_password" placeholder="Password" required/>
+                    </div>
+                </div>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <a href="{{ path('user_registration') }}" class="forgot-password">
+                Not a member, register ?
+            </a>
+
+            {#If you want to control the URL the user
+             is redirected to on success (more details below)#}
+
+            <input type="hidden" name="go_to" value="{{ path('dashboard') }}" />
+            <input type="hidden" name="back_to" value="{{ path('forgot_password') }}" />
+
+        </div><!-- /card-container -->
+        </form>
+    </div><!-- /container -->
+
+
+    {% endblock %}
