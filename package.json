@@ -14,7 +14,10 @@
     "webpack-notifier": "^1.5.1"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "fancyapps/fancybox",
     "bootstrap": "^4.0.0",
+    "bootstrap-star-rating": "^4.0.2",
+    "font-awesome": "^4.7.0",
     "popper.js": "^1.12.9"
   }
 }

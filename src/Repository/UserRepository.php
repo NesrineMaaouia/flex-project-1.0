@@ -18,6 +18,24 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+    /**
+     * @param PUser $user
+     */
+    public function persistAndFlush(PUser $user)
+    {
+        $this->_em->persist($user);
+        $this->_em->flush();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function persistAndRefresh(User $user)
+    {
+        $this->persistAndFlush($user);
+        $this->_em->refresh($user);
+    }
+
 
     /*
     public function findBySomething($value)

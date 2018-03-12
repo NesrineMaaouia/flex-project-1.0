@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users List</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    {{ form_start(form) }}
+                    <div class="form-group col-md-12">
+                        {{ form_row(form.username, {'attr': {'class': 'form-control required', 'placeholder': 'Username*', 'maxlength': 80}}) }}
+                    </div>
+                    <div class="form-group col-md-12">
+                        {{ form_row(form.password, {'attr': {'class': 'form-control required', 'placeholder': 'Password*', 'maxlength': 80}}) }}
+                    </div>
+                    <div class="form-group col-md-12">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control required', 'placeholder': 'Email*', 'maxlength': 80}}) }}
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Mettre à jour</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+         </div>
+    </div>
+
+{% endblock %}

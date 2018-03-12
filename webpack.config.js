@@ -8,8 +8,18 @@ Encore
     // the public path used by the web server to access the previous directory
     .setPublicPath('/build')
 
-    // will create public/build/app.js and public/build/app.css
-    .addEntry('css/app', './assets/js/app.js')
+    .cleanupOutputBeforeBuild()
+    .enableSourceMaps(!Encore.isProduction())
+    // uncomment to create hashed filenames (e.g. app.abc123.css)
+    // .enableVersioning(Encore.isProduction())
+
+    // uncomment to define the assets of the project
+    .addEntry('js/app', './assets/js/app.js')
+    .addStyleEntry('css/app', './assets/css/app.scss')
+
+    // uncomment if you use Sass/SCSS files
+    .enableSassLoader()
+
 
     // allow sass/scss files to be processed
     .enableSassLoader()
